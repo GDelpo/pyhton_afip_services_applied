@@ -86,17 +86,20 @@ La clase `AFIPService` encapsula la lógica principal del cliente, destacando:
 ## Instalación y Configuración
 
 1. **Crea y activa un entorno virtual:**
+
     ```bash
     python3 -m venv venv
     source venv/bin/activate  # En Windows: venv\Scripts\activate
     ```
 
 2. **Instala las dependencias:**
+
     ```bash
     pip install -r requirements.txt
     ```
 
 3. **Configura el archivo `.env`** en la raíz del proyecto con las siguientes variables:
+
     ```env
     AFIP_USERNAME=<tu_usuario>
     AFIP_PASSWORD=<tu_contraseña>
@@ -129,9 +132,42 @@ El script realiza las siguientes tareas:
 - Genera logs en el archivo `error_report.log`.
 
 Para ejecutar el cliente:
+
 ```bash
 python nit_errors_report.py
 ```
+
+---
+
+> `monotributo_checker.py` amplía la funcionalidad del cliente al procesar información adicional relacionada con el monotributo y el régimen general de las personas consultadas. Entre sus principales funciones se encuentran:
+
+- **Carga y Configuración:**
+  - Carga las variables de entorno definidas en el archivo `.env`.
+  - Lee el archivo Excel que contiene los NITs, asegurándose de que la columna `nro_nit` esté correctamente formateada.
+
+- **Consulta y Procesamiento de Datos:**
+  - Inicializa una instancia de `AFIPService` utilizando los parámetros configurados.
+  - Consulta el servicio de inscripción de la API AFIP.
+  - Acumula y filtra los errores detectados en la respuesta.
+  - Procesa cada registro para extraer y formatear datos relevantes, como:
+    - Datos generales (tipo de persona, nombre, apellido o razón social).
+    - Información de monotributo y/o régimen general.
+  - Solo se incluyen aquellos registros que tengan datos de monotributo o de régimen general.
+
+- **Generación de Reporte:**
+  - Guarda un reporte en formato JSON que contiene los registros con información relevante.
+  - Registra logs detallados en el archivo `monotributo.log`.
+
+### Ejecución del Script
+
+Para ejecutar el script de monotributo, utiliza el siguiente comando en la terminal:
+
+```bash
+python monotributo_checker.py
+```
+
+> [!TIP]
+> Asegúrate de que el archivo Excel y las variables de entorno estén correctamente configurados para evitar errores durante la ejecución.
 
 ---
 
