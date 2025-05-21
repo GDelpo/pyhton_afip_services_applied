@@ -30,6 +30,9 @@ El cliente realiza las siguientes tareas:
 ## Integración con AFIP | ARCA WSN TO API
 
 Este cliente consume el servicio backend desarrollado en el repositorio [pyhton_fastapi_afip_services](https://github.com/GDelpo/pyhton_fastapi_afip_services).  
+
+VER [iva_checker](https://github.com/GDelpo/python_afip_iva_file_checker/) Acá tenemos un ejemplo de como se utiliza el cliente para consultar el servicio de IVA y comparar la información para la presentacion de la declaración jurada.
+
 Dicha API, implementada con FastAPI, integra los web services de AFIP (WSAA y WSN) e incluye:
 
 - **Autenticación JWT.**
